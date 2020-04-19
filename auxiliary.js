@@ -52,7 +52,7 @@ function clickEffect(buttonId) {
 
 ///////////////////////////////////////////////
 
-function showResults(bad, good, perfect) {
+function showResults(bad, good, perfect, correct, reward) {
   const prize = correct * reward
   main.className = 'results';
   if (correct === 0) {
