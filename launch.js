@@ -25,6 +25,7 @@ function launch(option) {
     rules.innerHTML = rulesText;
 
     let numbers = randomArray(N);
+    let time;
 
     startButton.addEventListener('click', function() {
       rules.style.display = 'none';
@@ -32,6 +33,7 @@ function launch(option) {
       main.style.display = 'block';
       //console.log(numbers)
       setTimeout(function () {
+        time = performance.now();
         main.className = 'number';
         main.innerHTML = numbers[0];
       }, startDelay)
@@ -83,6 +85,7 @@ function launch(option) {
     function finish() {
       clickEffect("saveButton");
       results[numbers[counter - 1]] = document.getElementsByTagName("input")[0].value;
+      time = Math.round((performance.now() - time) / 1000);
       for (key in results) {
         if (Number(key) === Number(results[key])) {
           correct++;
@@ -91,5 +94,6 @@ function launch(option) {
       showResults(N/2, Math.floor(3*N/4 + 1), N, correct, reward);
       //console.log(results)
       //console.log(correct)
+      //console.log(time)
     }
 }
