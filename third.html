@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <title>Третий вариант</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="basic_style.css" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  
+  <div id='rules'></div>
+  <button id='startButton' type='button'>Начать тестирование</button>
+  <div id='main'></div> 
+
+  <script src="CONSTANTS.js"></script>
+  <script src="auxiliary.js"></script>
+  <script>
+    
+    const rules = document.getElementById('rules')
+    const startButton = document.getElementById('startButton');
+    const main = document.getElementById('main')
+
+    rules.innerHTML = thirdRulesText;
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <title>Второй вариант</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="basic_style.css" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  
+  <div id='rules'></div>
+  <button id='startButton' type='button'>Начать тестирование</button>
+  <div id='main'></div> 
+
+  <script src="CONSTANTS.js"></script>
+  <script src="auxiliary.js"></script>
+  <script>
+    
+    const rules = document.getElementById('rules')
+    const startButton = document.getElementById('startButton');
+    const main = document.getElementById('main')
+
+    rules.innerHTML = secondRulesText;
+
+    let numbers = randomArray(20);
+    //let time;
+
+    startButton.addEventListener('click', function() {
+      rules.style.display = 'none';
+      startButton.style.display = 'none';
+      main.style.display = 'block';
+      //console.log(numbers)
+      setTimeout(function () {
+        //time = performance.now();
+        main.className = 'number';
+        main.innerHTML = numbers[0];
+      }, startDelay)
+      setTimeout(start, startDelay + showNumberDuration)
+    });
+
+    let counter = 1; 
+    function start() {
+      if (counter === 20) {
+        return null;
+      }
+      else {
+        main.className = 'number';
+        main.innerHTML = numbers[counter];
+          
+        setTimeout(showForm, showNumberDuration, 'save');
+        if (counter === 19) {
+            setTimeout(showForm, showFormDuration + showNumberDuration, 'finish');
+        }
+          
+        counter++;
+        setTimeout(start, showNumberDuration + showFormDuration)
+      }
+    }
+    
+    function showForm(action) {
+      main.className = 'form';
+      main.innerHTML = '<input type="text" placeholder="' + (action === 'save' ? 'Введите предыдущее число' : 'И последнее...') + '" pattern="[0-9]{0,4}"><button type="button" id="saveButton" onclick="' + action + '()">Сохранить</button>';
+      const input = document.querySelector('input')
+      input.focus();
+      (function() {
+        input.addEventListener('keydown', function(e) {
+        if (e.keyCode === 13) {
+          action === 'save' ? save() : finish();
+        }
+        });
+      })();
+    }
+    
+    let correct = 0;
+    let results = [];
+    numbers.forEach(number => results.push({'question': number, 'answer': null}));
+    
+    function save() {
+      clickEffect("saveButton");
+      results[counter - 2]['answer'] = document.getElementsByTagName("input")[0].value;;
+    }
+
+    function finish() {
+      results[counter - 1]['answer'] = document.getElementsByTagName("input")[0].value;
+      //time = Math.round((performance.now() - time) / 1000);
+      results.forEach(pair => {
+        if (pair['question'] == pair['answer']) correct++
+      })
+      showResults(10, 16, 20, correct, reward);
+      //console.log(results)
+      //console.log(correct)
+      //console.log(time)
+    }
+  </script>
+
+</body>
+</html>

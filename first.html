@@ -1,30 +1,29 @@
-function launch(option) {
-    let N, rulesText;
-    if (option === 'first') {
-      N = 10;
-      rulesText = firstRulesText;
-    }
-    else if (option === 'second') {
-      N = 20;
-      rulesText = secondRulesText;
-    }
+<!doctype html>
+<html lang="ru">
+<head>
+  <title>Первый вариант</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="basic_style.css" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  
+  <div id='rules'></div>
+  <button id='startButton' type='button'>Начать тестирование</button>
+  <div id='main'></div> 
+
+  <script src="CONSTANTS.js"></script>
+  <script src="auxiliary.js"></script>
+  <script>
     
-    const main = document.getElementById('main');
-    const firstButton = document.getElementById('firstButton');
-    const secondButton = document.getElementById('secondButton');
-    const thirdButton = document.getElementById('thirdButton');
     const rules = document.getElementById('rules')
     const startButton = document.getElementById('startButton');
+    const main = document.getElementById('main')
 
-    main.style.display = 'none';
-    firstButton.style.display = 'none';
-    secondButton.style.display = 'none';
-    thirdButton.style.display = 'none';
-    rules.style.display = 'block';
-    startButton.style.display = 'block';
-    rules.innerHTML = rulesText;
+    rules.innerHTML = firstRulesText;
 
-    let numbers = randomArray(N);
+    let numbers = randomArray(10);
     //let time;
 
     startButton.addEventListener('click', function() {
@@ -42,7 +41,7 @@ function launch(option) {
 
     let counter = 1; 
     function start() {
-      if (counter === N) {
+      if (counter === 10) {
         return null;
       }
       else {
@@ -50,7 +49,7 @@ function launch(option) {
         main.innerHTML = numbers[counter];
           
         setTimeout(showForm, showNumberDuration, 'save');
-        if (counter === N-1) {
+        if (counter === 9) {
             setTimeout(showForm, showFormDuration + showNumberDuration, 'finish');
         }
           
@@ -88,9 +87,12 @@ function launch(option) {
       results.forEach(pair => {
         if (pair['question'] == pair['answer']) correct++
       })
-      showResults(N/2, Math.floor(3*N/4 + 1), N, correct, reward);
+      showResults(5, 8, 10, correct, reward);
       //console.log(results)
       //console.log(correct)
       //console.log(time)
     }
-}
+  </script>
+
+</body>
+</html>

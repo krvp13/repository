@@ -1,24 +1,4 @@
-html {
-    height: 100%;
-  }
-
-body {
-    background-color:rgb(238, 238, 238)
-}
-
-.main {
-    display: flex;
-    justify-content: space-around;
-    margin: 37.5vh 10vw;
-}
-
-.landingButton {
-    width: 300px;
-    height: 100px;
-}
-
 #rules {
-    display: none;
     width: 70vw;
     font-family: Arial;
     font-size: 20px;
@@ -28,20 +8,8 @@ body {
     box-sizing: border-box;
 }
 
-button {
-    font-family: Cambria;
-    font-size: 15px;
-    border: 1px solid black;
-    padding: 3px 0;
-}
-  
-button:hover {
-    background-color: skyblue;
-    cursor: pointer;
-}
-
 #startButton {
-    display: none;
+    display: block;
     margin: 0 auto;
     padding-left: 50px;
     padding-right: 50px;
