@@ -1,0 +1,37 @@
+html {
+    height: 100%;
+  }
+
+body {
+    background-color:rgb(238, 238, 238)
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+    margin: 37.5vh 10vw;
+}
+
+.landingButton {
+    width: 300px;
+    height: 100px;
+    transition: transform 0.2s;
+}
+
+.landingButton:hover {
+    transform: scale(1.085);
+    -ms-transform: scale(1.085);
+    -webkit-transform: scale(1.085);
+}
+
+button {
+    font-family: Cambria;
+    font-size: 15px;
+    border: 1px solid black;
+    padding: 3px 0;
+}
+  
+button:hover {
+    background-color: skyblue;
+    cursor: pointer;
+}

@@ -1,3 +1,4 @@
+
 html {
     height: 100%;
 }
@@ -54,7 +55,7 @@ input {
     margin: 0 auto;
     display: block;
     height: 25px;
-    width: 200px;
+    width: 300px;
     font-size: 19px;
     text-align: center;
 }
@@ -72,4 +73,3 @@ input {
     font-size: 100px;
     margin: 30vh auto;
 }
-
