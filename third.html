@@ -74,7 +74,7 @@
     
     let correct = 0;
     let results = [];
-    numbers.forEach(number => results.push({'question': number, 'answer': null}));
+    numbers.forEach(number => results.push({'question': number, 'answer': 'null'}));
     
     function save() {
       clickEffect("saveButton");
@@ -98,15 +98,11 @@
       //console.log(results)
       //console.log(correct)
       //console.log(time)
-      axios({
-        method: 'post',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        url: 'http://zhuzhlikova.wtf.fozzyhost.com/',
-        data: {
+      axios.post('http://zhuzhlikova.wtf.fozzyhost.com/api/test_three.php', {
           correct: correct,
           results: results
         }
-      }).then(response => {
+      ).then(response => {
         alert("Результаты отправлены ;)");
       }).catch(error => {
           console.log(error)
