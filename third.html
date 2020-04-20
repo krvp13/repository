@@ -16,12 +16,89 @@
   <script src="CONSTANTS.js"></script>
   <script src="auxiliary.js"></script>
   <script>
-    
+
     const rules = document.getElementById('rules')
     const startButton = document.getElementById('startButton');
     const main = document.getElementById('main')
 
     rules.innerHTML = thirdRulesText;
+
+    let numbers = randomArray(20);
+    //let time;
+
+    startButton.addEventListener('click', function() {
+      rules.style.display = 'none';
+      startButton.style.display = 'none';
+      main.style.display = 'block';
+      //console.log(numbers)
+      setTimeout(function () {
+        //time = performance.now();
+        main.className = 'number';
+        main.innerHTML = numbers[0] + ' ' + numbers[1];
+      }, startDelay)
+      setTimeout(start, startDelay + showNumberDurationThird)
+    });
+    
+    let counter = 2; 
+    function start() {
+      if (counter === 20) {
+        return null;
+      }
+      else {
+        main.className = 'number';
+        main.innerHTML = numbers[counter] + ' ' + numbers[counter + 1];
+          
+        setTimeout(showForm, showNumberDurationThird, 'save');
+        if (counter === 18) {
+            setTimeout(showForm, showFormDurationThird + showNumberDurationThird, 'finish');
+        }
+          
+        counter += 2;
+        setTimeout(start, showNumberDurationThird + showFormDurationThird)
+      }
+    }
+    
+    function showForm(action) {
+      main.className = 'form';
+      main.innerHTML = '<input type="text" placeholder="' + (action === 'save' ? 'Введите предыдущие числа' : 'И последний раз...') + '"><button type="button" id="saveButton" onclick="' + action + '()">Сохранить</button>';
+      const input = document.querySelector('input')
+      input.focus();
+      (function() {
+        input.addEventListener('keydown', function(e) {
+        if (e.keyCode === 13) {
+          action === 'save' ? save() : finish();
+        }
+        });
+      })();
+    }
+    
+    let correct = 0;
+    let results = [];
+    numbers.forEach(number => results.push({'question': number, 'answer': null}));
+    
+    function save() {
+      clickEffect("saveButton");
+      let answer = document.getElementsByTagName("input")[0].value.trim().split(' ');
+      let last = answer.length - 1;
+      if (answer[0]) results[counter - 4]['answer'] = answer[0];
+      if (answer[last] && last) results[counter - 3]['answer'] = answer[last];
+    }
+
+    function finish() {
+      let answer = document.getElementsByTagName("input")[0].value.trim().split(' ');
+      let last = answer.length - 1;
+      if (answer[0]) results[counter - 2]['answer'] = answer[0];
+      if (answer[last] && last) results[counter - 1]['answer'] = answer[last];
+      //time = Math.round((performance.now() - time) / 1000);
+      results.forEach(pair => {
+        if (pair['answer'] && !Number.isNaN(Number(pair['answer']))) pair['answer'] = Number(pair['answer']);
+        if (pair['question'] === pair['answer']) correct++;
+      })
+      showResults(10, 16, 20, correct, rewardThird);
+      //console.log(results)
+      //console.log(correct)
+      //console.log(time)
+    }
 
   </script>
 

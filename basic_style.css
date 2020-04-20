@@ -15,6 +15,13 @@ main {
 .landingButton {
     width: 300px;
     height: 100px;
+    transition: transform 0.2s;
+}
+
+.landingButton:hover {
+    transform: scale(1.085);
+    -ms-transform: scale(1.085);
+    -webkit-transform: scale(1.085);
 }
 
 button {

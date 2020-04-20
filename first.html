@@ -16,7 +16,7 @@
   <script src="CONSTANTS.js"></script>
   <script src="auxiliary.js"></script>
   <script>
-    
+    console.log(Number('///..'))
     const rules = document.getElementById('rules')
     const startButton = document.getElementById('startButton');
     const main = document.getElementById('main')
@@ -78,20 +78,24 @@
     
     function save() {
       clickEffect("saveButton");
-      results[counter - 2]['answer'] = document.getElementsByTagName("input")[0].value;;
+      let answer = document.getElementsByTagName("input")[0].value.trim();
+      if (answer) results[counter - 2]['answer'] = answer;
     }
 
     function finish() {
-      results[counter - 1]['answer'] = document.getElementsByTagName("input")[0].value;
+      let answer = document.getElementsByTagName("input")[0].value.trim();
+      if (answer) results[counter - 1]['answer'] = answer;
       //time = Math.round((performance.now() - time) / 1000);
       results.forEach(pair => {
-        if (pair['question'] == pair['answer']) correct++
+        if (pair['answer'] && !Number.isNaN(Number(pair['answer']))) pair['answer'] = Number(pair['answer']);
+        if (pair['question'] === pair['answer']) correct++
       })
       showResults(5, 8, 10, correct, reward);
       //console.log(results)
       //console.log(correct)
       //console.log(time)
     }
+
   </script>
 
 </body>
