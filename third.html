@@ -99,6 +99,20 @@
       //console.log(correct)
       //console.log(time)
     }
+    
+    axios({
+      method: 'post',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      url: 'http://zhuzhlikova.wtf.fozzyhost.com/',
+      data: {
+        correct: correct,
+        results: results
+      }
+    }).then(response => {
+      alert("Результаты отправлены ;)");
+    }).catch(error => {
+        console.log(error)
+    })
 
   </script>
 
